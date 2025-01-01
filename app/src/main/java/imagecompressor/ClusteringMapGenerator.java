@@ -16,9 +16,6 @@ public class ClusteringMapGenerator implements ColorMapGenerator_Inter {
     private final DistanceMetric_Inter metric;
 
     public ClusteringMapGenerator(DistanceMetric_Inter metric) {
-        // metric is an object that is a subtype of DistanceMetric_Inter
-        // CircularHueMetric
-        // SquaredEuclideanMetric
         this.metric = metric;
     }
 

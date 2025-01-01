@@ -3,7 +3,6 @@ package imagecompressor;
 import java.util.HashMap;
 import java.util.Map;
 
-
 class BucketingMapGenerator implements ColorMapGenerator_Inter {
     // The color map in this implementation will be based on partitioning the color space into evenly-sized buckets.
     // Specifically, consider the combined color (RGB) as a single 24-bit integer.
@@ -44,23 +43,12 @@ class BucketingMapGenerator implements ColorMapGenerator_Inter {
         for (int i = 0; i < numColors; i++) {
             double center = bucketSize * i + middleOfBucket; // center will be an integer color
             int finalCenter = (int) center;
-            // how do we know what color this integer represents
-            // do we convert the integer to binary?
-            // no we don't
-            // we need red/green/blue in int, so how do we get this
-            // Consider the combined color (with red, green, and blue values) as a single 24-bit integer.
-            // Let the red value constitute the most significant 8 bits, green middle, blue last
 
             int red = (finalCenter >> 16) & 0xFF; // red is the most significant 8 bits
             int green = (finalCenter >> 8) & 0xFF; // green is the middle 8 bits
             int blue = finalCenter & 0xFF; // blue is the least significant 8 bits
             Pixel newColor = new Pixel(red, green, blue);
             palette[i] = newColor;
-
-            // how to convert a single 24-bit integer into it's separate bits
-            // we know it can represent values between 0 and 2^24 - 1
-            // each integer we come across we know is 24 bits, so we 0 extend?
-            // 0 and 16777215
         }
         return palette;
     }
